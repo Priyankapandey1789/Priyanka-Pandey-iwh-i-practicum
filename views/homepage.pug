@@ -2,35 +2,38 @@ html
     head 
         title= `${title}`
         meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css")
         link(rel="stylesheet", href="/css/style.css")
         link(rel='stylesheet', href='https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css')
+        
         link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css')
         script(src='https://code.jquery.com/jquery-3.6.0.min.js')
         script(src='https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js')
-    body    
-        h1 Favorite Anime
+    body 
+     div.container   
+        h1 Favorite Shop
         a(href="/update-cobj", class="link") Add to this table
         br
         div
-            table#animeTable(border="1")
+            table#shopTable(border="1")
                 thead
                     tr
                         th Name
-                        th Favorite Character
-                        th Description
+                        th SKU
+                        th Product Id
                         th Edit
                 tbody
-                    each anime in data
+                    each shop in data
                         tr
-                            td= anime.properties.name
-                            td= anime.properties.favorite_character
-                            td= anime.properties.description
+                            td= shop.properties.name
+                            td= shop.properties.sku
+                            td= shop.properties.product_id
                             td
-                                a(href=`/update-cobj/${anime.properties.hs_object_id}`, title="Edit")
+                                a(href=`/update-cobj/${shop.properties.hs_object_id}`, title="Edit")
                                     i.fa.fa-edit(style="color: green; cursor: pointer; margin-right: 10px;")
-                                a(href=`/delete-cobj/${anime.properties.hs_object_id}`, title="Delete", onclick="return confirm('Are you sure you want to delete this?')")
+                                a(href=`/delete-cobj/${shop.properties.hs_object_id}`, title="Delete", onclick="return confirm('Are you sure you want to delete this?')")
                                     i.fa.fa-trash(style="color: red; cursor: pointer;")
             script.
                 $(document).ready(function() {
-                    $('#animeTable').DataTable();
+                    $('#shopTable').DataTable();
                 });

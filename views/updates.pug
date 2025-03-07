@@ -4,7 +4,7 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1")
     link(rel="stylesheet", href="/css/style.css")
   body    
-    h1= data ? 'Update Favorite Anime' : 'Add Favorite Anime'
+    h1= data ? 'Update Favorite Shop' : 'Add Favorite Shop'
     a(href="/", class="link") Return to the Homepage
 
     form(action= data ? `/update-cobj/${data.properties.hs_object_id}` : "/update-cobj", method="POST")
@@ -24,23 +24,24 @@ html
               )
           tr
             td
-              label(for="favorite_character") Favorite Character:
+              label(for="sku") SKU:
                 span.required *
             td
               input(
                 type="text", 
-                name="favorite_character", 
+                name="sku", 
                 required, 
                 class="rounded-input", 
-                value= data ? data.properties.favorite_character : ''
+                value= data ? data.properties.sku : ''
               )
           tr
             td
-              label(for="description") Description:
+              label(for="product_id") Product ID:
             td
-              textarea(
-                name="description", 
-                id="description", 
-                class="rounded-input"
-              )= data ? data.properties.description : ''
+              input(
+                type="number", 
+                name="product_id",  
+                class="rounded-input", 
+                value= data ? data.properties.product_id : ''
+              )
       button(type="submit", class="rounded-button")= data ? 'Update' : 'Add'

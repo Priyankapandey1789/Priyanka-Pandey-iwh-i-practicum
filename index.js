@@ -17,8 +17,8 @@ const PRIVATE_APP_ACCESS = process.env.PRIVATE_APP_ACCESS;
 app.get('/', async (req, res) => {
     try {
         //call API
-        const data = await axiosHelper.getCustomObject('2-38355921', 100, 'name,favorite_character,description,hs_object_id', PRIVATE_APP_ACCESS);
-        res.render('homepage', { title: 'Favorite Anime | Integrating With HubSpot I Practicum', data: data?.results || [] });
+        const data = await axiosHelper.getCustomObject('2-41612336', 100, 'name,sku,product_id,hs_object_id', PRIVATE_APP_ACCESS);
+        res.render('homepage', { title: 'Favorite Shop | Integrating With HubSpot I Practicum', data: data?.results || [] });
     } catch (error) {
         console.error(error);
     }
@@ -30,9 +30,9 @@ app.get('/update-cobj/:id?', async (req, res) => {
     try {
         let data = null;
         if(req.params?.id){
-            data = await axiosHelper.getCustomObjectById('2-38355921', req.params.id, 'name,favorite_character,description,hs_object_id', PRIVATE_APP_ACCESS);
+            data = await axiosHelper.getCustomObjectById('2-41612336', req.params.id, 'name,sku,product_id,hs_object_id', PRIVATE_APP_ACCESS);
         }
-        res.render('updates', { title: 'Update Favorite Anime Form | Integrating With HubSpot I Practicum', data: data });
+        res.render('updates', { title: 'Update Favorite Shop Form | Integrating With HubSpot I Practicum', data: data });
     } catch (error) {
         console.error(error);
     }
@@ -46,12 +46,12 @@ app.post('/update-cobj/:id?', async (req, res) => {
     try {
         //call API
         if(req.params?.id){
-            await axiosHelper.updateCustomObject('2-38355921', req.params.id, req.body, PRIVATE_APP_ACCESS);
+            await axiosHelper.updateCustomObject('2-41612336', req.params.id, req.body, PRIVATE_APP_ACCESS);
         }else{
-            await axiosHelper.addCustomObject('2-38355921', req.body, PRIVATE_APP_ACCESS);
+            await axiosHelper.addCustomObject('2-41612336', req.body, PRIVATE_APP_ACCESS);
         }
         res.redirect('/');
-        // res.render('homepage', { title: 'Favorite Anime | Integrating With HubSpot I Practicum', data });
+        // res.render('homepage', { title: 'Favorite Shop | Integrating With HubSpot I Practicum', data });
     } catch (error) {
         console.error(error);
     }
@@ -64,7 +64,7 @@ app.post('/update-cobj/:id?', async (req, res) => {
 //     try {
 //         //call API
 //         if(req.params?.id){
-//             await axiosHelper.deleteCustomObject('2-38355921', req.params.id, PRIVATE_APP_ACCESS);
+//             await axiosHelper.deleteCustomObject('2-41612336', req.params.id, PRIVATE_APP_ACCESS);
 //         }
 //         res.redirect('/');
 //     } catch (error) {
